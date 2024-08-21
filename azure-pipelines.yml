@@ -13,17 +13,19 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: myapp
   jobs:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      vmImage: myapp-latest
     steps:
     - task: Docker@2
       displayName: Build an image
       inputs:
         command: build
+        containerRegistry: 'DockerHub7'
+        repository: 'AnandJoy7'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
